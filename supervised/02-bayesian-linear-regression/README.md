@@ -195,3 +195,15 @@ y_pred, y_std = model.predict(X_test, return_std=True)
 4. **scikit-learn docs — BayesianRidge** — [sklearn.linear_model.BayesianRidge](https://scikit-learn.org/stable/modules/linear_model.html#bayesian-regression) — Concise practical guide with the evidence framework explained.
 
 5. **Distill.pub / Betancourt — *A Conceptual Introduction to Hamiltonian Monte Carlo*** — Essential reading once you want to move beyond conjugate models to full probabilistic programming with PyMC.
+
+## Bayesian Linear Regression Workflow
+
+![Bayesian Linear Regression Workflow](images/bayesian_linear_regression_workflow.png)
+
+*Figure: End-to-end workflow of Bayesian Linear Regression using Bayes' theorem.*
+
+### Real-World Example
+Estimating house prices while also understanding the uncertainty in predictions.
+
+### Analogy
+It is like updating your beliefs after receiving new evidence.

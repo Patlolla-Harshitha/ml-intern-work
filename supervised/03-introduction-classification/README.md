@@ -182,3 +182,9 @@ print(classification_report(y_test, y_pred))
 ![Classification Workflow](images/classification_workflow.png)
 
 *Figure: Workflow of a classification problem from data collection to decision-making.*
+
+### Real-World Example
+Predicting whether a patient has heart disease based on medical information.
+
+### Analogy
+Like sorting emails into "Spam" and "Not Spam."
