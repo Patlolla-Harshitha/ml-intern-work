@@ -176,3 +176,9 @@ print(classification_report(y_test, y_pred))
 ---
 
 *Part of the ML Study Series | Next →* ***Logistic Regression (Deep Dive)***
+
+## Classification Workflow
+
+![Classification Workflow](images/classification_workflow.png)
+
+*Figure: Workflow of a classification problem from data collection to decision-making.*
