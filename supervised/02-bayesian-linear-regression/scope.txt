@@ -1,0 +1,161 @@
+Bayesian Linear Regression — ML study scope document covering learning objectives, subtopics, interview questions, prerequisites, and connections.
+Bayesian Linear Regression
+
+Scope document · ML study material · FAANG placement focus
+
+1
+Learning objectives
+Explain
+
+Why a distribution over weights is preferred over a point estimate
+The role of the prior in regularizing predictions
+Predictive uncertainty and when it grows
+How BLR reduces to Ridge regression under a Gaussian prior
+Derive conceptually
+
+Posterior as a product of prior and likelihood, normalized
+Why the posterior is Gaussian when prior and likelihood are Gaussian
+The predictive distribution as a marginalization over weights
+MAP estimation as a special case (point posterior)
+Implement
+
+BLR from scratch using NumPy (closed-form posterior)
+Sequential/online Bayesian updating
+Plot posterior predictive mean ± uncertainty bands
+BLR using PyMC / scikit-learn BayesianRidge
+2
+Subtopics
+Core concepts and intuition
+
+Why treat weights as random variables — quantifying belief before and after seeing data, and what it means to reason under uncertainty rather than commit to a single model.
+
+Mathematical formulation (final equations only)
+
+Closed-form expressions for the posterior mean μₙ, posterior covariance Σₙ, and predictive distribution p(y*|x*, X, y) — no derivations, just the equations and what each term means.
+
+Prior, likelihood, and posterior distributions
+
+Conjugate Gaussian prior over weights, Gaussian likelihood of observations, resulting Gaussian posterior — why conjugacy makes the math tractable and updates closed-form.
+
+Implementation details
+
+NumPy closed-form implementation, sequential Bayesian updates, using PyMC for probabilistic programming, and scikit-learn's BayesianRidge for production-ready inference.
+
+Failure modes, edge cases, and misconceptions
+
+Prior misspecification, ill-conditioned covariance matrices, conflating MAP with full Bayesian inference, and the misconception that BLR is "just Ridge with uncertainty."
+
+3
+Top 5 interview questions
+Q1
+Conceptual
+How does Bayesian Linear Regression differ from OLS and Ridge Regression? Under what assumptions does each reduce to the other?
+
+Tests: understanding of MAP ↔ Ridge equivalence under Gaussian prior, and full posterior vs. point estimate tradeoff.
+
+Q2
+Derivation
+Walk me through how you arrive at the posterior distribution over weights. Why is the result Gaussian, and what are the closed-form expressions for its mean and covariance?
+
+Tests: conjugacy, completing the square intuitively, understanding of Σₙ = (α I + β XᵀX)⁻¹ and μₙ = β Σₙ Xᵀy.
+
+Q3
+Conceptual
+What does the predictive uncertainty represent in BLR, and why does it increase far from training data? How does this differ from aleatoric vs. epistemic uncertainty?
+
+Tests: ability to decompose predictive variance into noise (aleatoric) and model uncertainty (epistemic), and interpret uncertainty estimates in deployment.
+
+Q4
+Implementation
+How would you perform online/sequential Bayesian updates for a streaming data problem? What property of the posterior makes this computationally feasible?
+
+Tests: understanding that the posterior at step n becomes the prior at step n+1 — elegant and practically important for real-time systems.
+
+Q5
+Design
+When would you choose BLR over a Gaussian Process or a neural network with MC Dropout for a regression problem with limited data?
+
+Tests: practical tradeoff reasoning — scalability, prior expressiveness, interpretability, computational cost, and uncertainty calibration in low-data regimes.
+
+4
+Prerequisite knowledge
+Statistics & probability
+
+Bayes' theorem
+Gaussian distribution
+Conditional probability
+MLE vs MAP
+Conjugate priors
+Marginalisation
+Linear algebra
+
+Matrix inversion
+Positive definiteness
+Eigendecomposition (basic)
+Multivariate Gaussian
+Classical ML
+
+OLS regression
+Ridge / L2 regularisation
+Overfitting & bias-variance
+Cross-validation
+Calculus
+
+Log-likelihood
+Completing the square
+Gaussian integrals (basic)
+5
+Connections to other ML concepts
+← Generalises from
+
+Ridge Regression
+
+MAP estimate under Gaussian prior is exactly Ridge; BLR adds full uncertainty quantification.
+
+→ Leads to
+
+Gaussian Processes
+
+BLR in infinite-dimensional feature space = GP. Same posterior predictive structure, kernel replaces inner product.
+
+→ Motivates
+
+Variational Inference
+
+When posteriors aren't conjugate, VI approximates them — BLR is the tractable closed-form special case.
+
+↔ Parallel idea
+
+Kalman Filter
+
+Sequential BLR update equations are structurally identical to the Kalman Filter predict/update cycle.
+
+→ Extends to
+
+Bayesian Neural Nets
+
+Same philosophy — place priors over weights — but non-conjugate, requiring MCMC, VI, or MC Dropout.
+
+↔ Related idea
+
+Empirical Bayes
+
+Marginal likelihood maximisation (Evidence framework) to tune α, β hyperparameters — avoids grid search.
+
+→ Foundational for
+
+Bayesian Optimisation
+
+Surrogate models in BO (often GPs or BLR) use the same posterior predictive uncertainty to drive exploration.
+
+← Conceptual basis
+
+Regularisation
+
+L2 regularisation has a direct Bayesian interpretation as a Gaussian prior — BLR makes this explicit.
+
+→ Scales toward
+
+MCMC / HMC
+
+When closed-form posterior is unavailable (non-linear models), MCMC approximates it — BLR is the analytic baseline.
