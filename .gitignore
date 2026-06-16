@@ -1,0 +1,4 @@
+.venv312/
+deep-learning/08-rnns/.venv/
+__pycache__/
+.ipynb_checkpoints/
